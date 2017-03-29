@@ -1,0 +1,40 @@
+<h1>{{title}}</h1>
+
+<div class="row">
+    <div class="col-md-6 well">
+        <form [ngFormModel]="form" (ngSubmit)="save()">
+            <fieldset>
+                <legend>User</legend>
+                <label for="name">Name</label>
+                <input [(ngModel)]="user.name" id="name" type="text" class="form-control" ngControl="name" #name="ngForm">
+                <div *ngIf="name.touched && name.errors">
+                    <div *ngIf="name.errors.required" class="alert alert-danger">
+                        Name is required.
+                    </div>
+                </div>
+                <label for="email">Email</label>
+                <input [(ngModel)]="user.email" id="email" type="text" class="form-control" ngControl="email" #email="ngForm">
+                <div *ngIf="email.touched && email.errors">
+                    <div *ngIf="email.errors.email" class="alert alert-danger">
+                        Please type a valid email.
+                    </div>
+                </div>
+                <label for="phone">Phone</label>
+                <input [(ngModel)]="user.phone" id="phone" type="text" class="form-control" ngControl="phone">
+            </fieldset>
+            <fieldset ngControlGroup="address">
+                <legend>Address</legend>
+                <label for="street">Street</label>
+                <input [(ngModel)]="user.address.street" id="street" type="text" class="form-control" ngControl="street">
+                <label for="suite">Suite</label>
+                <input [(ngModel)]="user.address.suite" id="suite" type="text" class="form-control" ngControl="suite">
+                <label for="city">City</label>
+                <input [(ngModel)]="user.address.city" id="city" type="text" class="form-control" ngControl="city">
+                <label for="zipcode">ZipCode</label>
+                <input [(ngModel)]="user.address.zipcode" id="zipcode" type="text" class="form-control" ngControl="zipcode">
+            </fieldset>
+            <p></p>
+            <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Save</button>
+        </form>
+    </div>
+</div>
